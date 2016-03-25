@@ -2,18 +2,30 @@ myApp.factory("BookService", ["$http", function($http){
 
     var getData = function(){
        $http.get("/books").then(function(response){
-          console.log(response.data);
+          library.contents = response.data;
        });
     };
 
     var postData = function(data){
        $http.post("/books", data).then(function(response){
-           console.log(response);
+           getData();
        });
     };
 
+    var initialCall = function(){
+      if(library.contents === undefined){
+        $http.get("/books").then(function(response){
+            library.contents = response.data;
+        });
+      }
+    };
+
+    var library = {};
+
     return {
       postData: postData,
-      getData: getData
+      getData: getData,
+      initialCall: initialCall,
+      library: library
     };
 }]);

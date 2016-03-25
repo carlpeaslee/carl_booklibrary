@@ -1,13 +1,15 @@
 myApp.controller("AddController", ["$scope", "BookService", function($scope, BookService){
-    var bookObject = {};
     var bookService = BookService;
-    //POST HERE
+
+    $scope.bookObject = {};
     $scope.submit = function(data){
-      bookService.postData(data);
+        bookService.postData(data);
+        $scope.bookObject = {};
     };
 }]);
 
 myApp.controller("ShowController", ["$scope", "BookService", function($scope, BookService){
     var bookService = BookService;
-    bookService.getData();
+    bookService.initialCall();
+    $scope.library = bookService.library;
 }]);
