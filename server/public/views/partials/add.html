@@ -1,0 +1,14 @@
+<p>
+  Let's add some books!
+</p>
+<form ng-submit="submit(bookObject)">
+  <label>Title</label>
+  <input ng-model="bookObject.title" type="text"/>
+  <label>Author</label>
+  <input ng-model="bookObject.author" type="text"/>
+  <label>Publication Date</label>
+  <input ng-model="bookObject.pubdate" type="text"/>
+  <label>Image Url</label>
+  <input ng-model="bookObject.imageurl" type="text"/>
+  <input type="submit">
+</form>
