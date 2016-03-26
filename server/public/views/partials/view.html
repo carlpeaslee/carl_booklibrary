@@ -1,11 +1,21 @@
 <p>
   Here is Carl's library:
 </p>
-<div ng-repeat="book in library.contents">
-    <ul>
-        <li>{{book.title}}</li>
-        <li>{{book.author}}</li>
-        <li>{{book.pubdate}}</li>
-        <li>{{book.imageurl}}</li>
-    </ul>
-</div>
+<table class="table">
+    <tr>
+        <th><button ng-click="order('title')">Title</button>
+         <span class="sortorder" ng-show="predicate === 'title'" ng-class="{reverse:reverse}"></span></th>
+        <th><button ng-click="order('author')">Author</button>
+         <span class="sortorder" ng-show="predicate === 'author'" ng-class="{reverse:reverse}"></span></th>
+        <th>Publication Date</th>
+        <th>Image</th>
+        <th>Delete</th>
+    </tr>
+    <tr ng-repeat="book in library.contents | orderBy:predicate:reverse">
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.pubdate}}</td>
+        <td><img class="thumbnail" ng-src="{{book.imageurl}}" alt="{{book.title}}"/></td>
+        <td><button class="btn btn-danger" ng-click="deleteData(book._id)">Delete</button></td>
+    </tr>
+</table>

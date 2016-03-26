@@ -12,4 +12,15 @@ myApp.controller("ShowController", ["$scope", "BookService", function($scope, Bo
     var bookService = BookService;
     bookService.initialCall();
     $scope.library = bookService.library;
+
+    $scope.deleteData = bookService.deleteData;
+
+    $scope.predicate = 'title';
+    $scope.reverse = true;
+    $scope.order = function(predicate) {
+        $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+        $scope.predicate = predicate;
+  };
+
+
 }]);
